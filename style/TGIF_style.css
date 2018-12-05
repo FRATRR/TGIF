@@ -1,0 +1,94 @@
+/*--------------------------------------------------Title------------------------------------------------------------------------*/
+
+
+.TGIF_title {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 2%;
+    padding-left: 2%;
+    font-family: monospace;
+    color: white;
+    background-color: #4f548b;
+
+}
+
+
+
+/*--------------------------------------------------Navbar------------------------------------------------------------------------*/
+.btn-secondary {
+    background-color: #4f548b;
+}
+
+.btn-secondary:hover {
+    background-color: #4f548b;
+     !important;
+}
+
+.bg-dark {
+    background-color: crimson !important;
+    ;
+    border-color: #4f548b;
+     !important;
+}
+
+#dropdown03 {
+    color: white;
+}
+
+.mail {
+    margin-right: 76%;
+}
+
+.mail a {
+    color: white;
+    text-decoration: none;
+}
+
+/*--------------------------------------------------Main Text---------------------------------------------------------------------*/
+
+.main_content {
+    font-family: monospace;
+    font-size: 15px;
+    padding: 3%;
+}
+
+.chamber {
+    padding: 3%;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.chamber p {
+    font-size: 15px;
+}
+
+/*--------------------------------------------------Filter------------------------------------------------------------------------*/
+
+.filters {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+/*--------------------------------------------------Table------------------------------------------------------------------------*/
+
+.thead tr,
+th {
+    position: sticky;
+    top: 0;
+    background-color: #4f548b;
+    color: white;
+}
+
+#alert {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: monospace;
+}
