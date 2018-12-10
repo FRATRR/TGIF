@@ -8,6 +8,7 @@
     justify-content: space-between;
     padding-top: 2%;
     padding-left: 2%;
+    padding-right: 1%;
     font-family: monospace;
     color: white;
     background-color: #4f548b;
@@ -38,7 +39,7 @@
 }
 
 .mail {
-    margin-right: 76%;
+    margin-right: 1%;
 }
 
 .mail a {
@@ -62,6 +63,31 @@
 
 .chamber p {
     font-size: 15px;
+    text-align: justify;
+
+
+}
+
+.chamber h2 {
+    color: crimson;
+
+}
+
+.chamber_stats {
+    padding: 2%;
+    font-family: monospace;
+    font-size: 20px;
+    width: 42%;
+}
+
+.chamber_stats p {
+    font-size: 15px;
+    text-align: justify;
+}
+
+.chamber_stats h2 {
+    color: crimson;
+
 }
 
 /*--------------------------------------------------Filter------------------------------------------------------------------------*/
@@ -91,4 +117,47 @@ th {
     margin-left: auto;
     margin-right: auto;
     font-family: monospace;
+}
+
+.txt_plus_table {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.tables_10pct {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.tables_10pct h2 {
+    font-family: monospace;
+    font-size: 15px;
+    text-align: center;
+}
+
+.pct_table {
+    padding: 2%;
+    border-style: dashed;
+    border-color: crimson;
+}
+
+.members_counter_table {
+    margin: 2%;
+    padding: 2%;
+
+}
+
+.members_counter_table h2 {
+    font-family: monospace;
+    font-size: 15px;
+    text-align: center;
+    color: crimson;
+    text-align: center;
+    text-transform: capitalize;
 }
