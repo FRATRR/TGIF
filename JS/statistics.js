@@ -54,20 +54,18 @@ function members_counter(membersArray) {
     var counterDemVotes = 0;
     var counterIndVotes = 0;
     for (var x = 0; x < membersArray.length; x++) {
-        var add = 0;
         if (membersArray[x].party == "R") {
             counterRep += 1;
 
             counterRepVotes += membersArray[x].votes_with_party_pct;
         } else if (membersArray[x].party == "D") {
             counterDem += 1;
-            add = membersArray[x].votes_with_party_pct;
-            counterDemVotes += add;
+            counterDemVotes += membersArray[x].votes_with_party_pct;
 
         } else if (membersArray[x].party == "I") {
             counterInd += 1;
-            add = membersArray[x].votes_with_party_pct;
-            counterIndVotes += add;
+            counterIndVotes += membersArray[x].votes_with_party_pct;
+
         }
     }
 
