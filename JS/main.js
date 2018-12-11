@@ -4,39 +4,10 @@
 
 document.getElementById("alert").style.visibility = "hidden";
 
-//------------------------------Fetch data --------------------------------------------------------------------------------------->
-
-var data = {};
-var members = []
 
 
-var site = 'https://api.propublica.org/congress/v1/113/senate/members.json';
-
-fetch(site, {
-
-        headers: {
-
-            'X-API-Key': 'j0y5OLNGItnGNlvjQDw8TCTWTmtXmkTbBBYFj1oN',
-        }
-    }).then(function (response) {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Unable to retrieve data');
-        }
-    })
-    .then(function (jsonData) {
-        data = jsonData;
-        console.log(data)
-        members = data.results[0].members;
-        console.log("Console 1", members)
-        createtable(members);
-        dropdown_state(members);
-    });
-console.log("Console 2", members)
 //------------------------------ Make .memebers direct source of data------------------------------------------------------------>
-
-
+var members = data.results[0].members;
 //------------------------------ Listeners--------------------------------------------------------------------------------------->
 
 document.getElementById("dem").addEventListener("click", function () {
@@ -55,7 +26,7 @@ document.getElementById("state_list").addEventListener("change", function () {
 
 //------------------------------ Function to create the table ------------------------------------------------------------------->
 
-
+createtable(members);
 
 function createtable(membersArray) {
     var tbody = document.getElementById("members-data");
@@ -113,7 +84,7 @@ function filter_party(membersArray) {
 }
 
 //------------------------------ Function to create dropdown state list --------------------------------------------------------->
-
+dropdown_state(members);
 
 function dropdown_state(membersArray) {
     var stateArray = new Set(membersArray.map(member => member.state).sort()); //removing duplicates and creating new array
