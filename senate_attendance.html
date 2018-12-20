@@ -6,14 +6,23 @@
     <link rel="stylesheet" href="style/TGIF_style.css">
 </head>
 <header>
-    <div class="TGIF_title">
-        <div>
-            <h1>TGIF</h1>
-            <h5>Transparent Government in Fact</h5>
+
+        <div class="TGIF_title">
+            <div class="panda">
+                <div class="title">
+                    <h1>TGIF</h1>
+                </div>
+                <div class="subtitle">
+                    <h5>Transparent Government In Fact</h5>
+                </div>
+            </div>
+            <div>
+                <img src="images/statue-of-liberty.png">
+
+            </div>
         </div>
-        <img src="images/statue-of-liberty.png">
-    </div>
-</header>
+
+    </header>
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -48,88 +57,115 @@
             <img src="images/email.png">
             <a href="mailto:info@tgif.net"> Email Us </a> </div>
     </nav>
+    <!--VUE-->
+    <div class="container" id="app">
 
+        <!--Table container-->
 
-    <!--Table container-->
-    <div class="txt_plus_table">
-        <div class="chamber_stats">
-            <h2>Attendance - Senate</h2>
-            <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+        <div class="txt_plus_table">
+            <div class="chamber_stats">
+                <h2>Attendance - Senate</h2>
+                <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
 
-            <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+                <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+            </div>
+            <div class="members_counter_table">
+                <h2>Senate at a glance</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Party</th>
+                            <th>Number of Reps</th>
+                            <th>% Voted with Party</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Republican</td>
+                            <td>{{counterRep}}</td>
+                            <td>{{RepVotes}}</td>
+                        </tr>
+                        <tr>
+                            <td>Democrat</td>
+                            <td>{{counterDem}}</td>
+                            <td>{{DemVotes}}</td>
+
+                        </tr>
+                        <tr>
+                            <td>Independent</td>
+                            <td>{{counterInd}}</td>
+                            <td>{{IndVotes}}</td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td> Total</td>
+                            <td>{{tot_members}}</td>
+                            <td>{{votes_average}}</td>
+
+                        </tr>
+
+                    </tfoot>
+                </table>
+            </div>
         </div>
-        <div class="members_counter_table">
-            <h2>Senate at a glance</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Party</th>
-                        <th>Number of Reps</th>
-                        <th>% Voted with Party</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="rep_members">
-                        <td>Republican</td>
+        <div class="tables_10pct">
+            <div class="pct_table">
+                <h2>Least Engaged (Bottom 10% Attendance)</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    </tr>
-                    <tr id="dem_members">
-                        <td>Democrat</td>
+                        <tr v-for="member in least_attendance">
+                            <td> <a :href="member.url" target="_blank">{{member.first_name}} {{member.middle_name}} {{member.last_name}} </a> </td>
+                            <td>{{member.missed_votes}}</td>
+                            <td>{{member.missed_votes_pct}}%</td>
 
-                    </tr>
-                    <tr id="ind_members">
-                        <td>Independent</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div v-show="loading" class="loader_position">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="pct_table">
+                <h2>Most Engaged (Top 10% Attendance)</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr id="tot_members">
-                        <td> Total Members</td>
-                    </tr>
+                        <tr v-for="member in most_attendance">
+                            <td> <a :href="member.url" target="_blank">{{member.first_name}} {{member.middle_name}} {{member.last_name}} </a> </td>
+                            <td>{{member.missed_votes}}</td>
+                            <td>{{member.missed_votes_pct}}%</td>
 
-                </tfoot>
-            </table>
+                        </tr>
+                    </tbody>
+                </table>
+                <div v-show="loading" class="loader_position">
+                    <div class="loader"></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="tables_10pct">
-        <div class="pct_table">
-            <h2>Least Engaged (Bottom 10% Attendance)</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody id="least_engaged_voters">
-
-                </tbody>
-            </table>
-        </div>
-        <div class="pct_table">
-            <h2>Most Engaged (Top 10% Attendance)</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody id="most_engaged_voters">
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="JS/pro-congress-113-senate.js"></script>
-<script src="JS/statistics.js"></script>
-
+<script src="JS/vue.js"></script>
+    
 </html>

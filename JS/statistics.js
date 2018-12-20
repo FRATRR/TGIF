@@ -2,7 +2,6 @@
 /* eslint "no-console": "off" */
 /* global$ */
 var members = data.results[0].members;
-console.log(members)
 if (window.location.href.includes("attendance")) {
 
     members_counter(members);

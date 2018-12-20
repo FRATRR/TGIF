@@ -6,13 +6,22 @@
     <link rel="stylesheet" href="style/TGIF_style.css">
 </head>
 <header>
+
     <div class="TGIF_title">
-        <div>
-            <h1>TGIF</h1>
-            <h5>Transparent Government in Fact</h5>
+        <div class="panda">
+            <div class="title">
+                <h1>TGIF</h1>
+            </div>
+            <div class="subtitle">
+                <h5>Transparent Government In Fact</h5>
+            </div>
         </div>
-        <img src="images/statue-of-liberty.png">
+        <div>
+            <img src="images/statue-of-liberty.png">
+
+        </div>
     </div>
+
 </header>
 
 <body>
@@ -49,49 +58,70 @@
             <img src="images/email.png">
             <a href="mailto:info@tgif.net"> Email Us </a> </div>
     </nav>
+    <!--VUE-->
+    <div class="container" id="app">
+        <!--Table container-->
 
-    <!--Table container-->
 
 
-    <div class="chamber">
-        <h2>Senators</h2>
-        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-    </div>
-    <!--Filters-->
-    <div class="filters">
-        <div id="party_select">
-            <input type="checkbox" name="Democrat" id="dem" checked />Democrat <input type="checkbox" name="Republican" id="rep" checked /> Republican <input type="checkbox" name="Independent" id="ind" checked />Independent
+        <div class="chamber">
+            <h2>Senators</h2>
+            <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
         </div>
-        <div class="state_select">
-            <label> Filter By State:
-                <select id="state_list">
-                    <option value="ALL">All</option>
-                </select>
-            </label>
+        <!--Filters-->
+        <div class="filters">
+            <div id="party_select">
+                <div class="checkbox_position">
+                    <input type="checkbox" value="D" v-model="selected_party"><label>Democrats</label>
+                    <input type="checkbox" value="R" v-model="selected_party"><label>Republican</label>
+                    <input type="checkbox" value="I" v-model="selected_party"><label>Independents</label>
+                </div>
+            </div>
+
+            <div>
+                <label> Filter By State:
+                    <select v-model="selected_state">
+                        <option value="all" selected>All States Selected</option>
+                        <option v-for="member in state_dropdown" v-bind:value="member">{{FullNameStatesD[member]}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="search_box">
+                <input type="text" placeholder=" Search members..." v-model="search">
+            </div>
+
         </div>
-    </div>
-    <!--Table-->
+        <div>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Party</th>
-                <th>State</th>
-                <th>Years in Office</th>
-                <th>% Votes/Party</th>
-            </tr>
-        </thead>
+        <!--Table-->
+        <table class="table">
+            <thead class="thead_data">
+                <tr>
+                    <th v-on:click="sort_value_identifier('last_name')">Name</th>
+                    <th v-on:click="sort_value_identifier('party')">Party</th>
+                    <th v-on:click="sort_value_identifier('state')">State</th>
+                    <th v-on:click="sort_value_identifier('seniority')">Years in Office</th>
+                    <th v-on:click="sort_value_identifier('votes_with_party_pct')">% Votes/Party</th>
+                </tr>
+            </thead>
 
-        <tbody id="members-data">
+            <tbody>
+                <tr v-for="member in update_table">
+                    <td> <a :href="member.url" target="_blank">{{member.first_name}} {{member.middle_name}} {{member.last_name}} </a> </td>
+                    <td> {{member.party}}</td>
+                    <td> {{member.state}}</td>
+                    <td> {{member.seniority}}</td>
+                    <td> {{member.votes_with_party_pct}}%</td>
+                </tr>
+            </tbody>
 
-        </tbody>
 
+        </table>
+        <div v-show="loading" class="loader_position">
+            <img src="images/dog-loader.gif">
+        </div>
 
-    </table>
-    <div id="alert">
-        <img src="images/warning.png">
-        <h2>Please select a party or a different state</h2>
     </div>
 
 </body>
@@ -105,7 +135,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="JS/pro-congress-113-senate.js"></script>
-<script src="JS/main.js"></script>
+<script src="JS/vue.js"></script>
 
 </html>
