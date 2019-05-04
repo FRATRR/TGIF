@@ -25,7 +25,7 @@
     flex-direction: row;
 }
 
-.title {
+.TGIF_title h1 {
     color: red;
 }
 
@@ -36,8 +36,7 @@
 
 .nav-link {
     font-family: merriweather;
-    text-transform: uppercase;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 
@@ -156,10 +155,13 @@ thead {
     position: sticky;
     top: 0;
     background-color: #001f3f;
-    color: white;
-    font: merriweather;
+
 }
 
+th {
+    color: white;
+    font-family: merryweather;
+}
 
 .thead_data th {
     cursor: pointer;
@@ -244,7 +246,6 @@ thead {
     }
 }
 
-/*--------------------------------------------------Search Box-----------------------------------------------------------------*/
 
 
 /*--------------------------------------------------Checkboxes + Select + Search-----------------------------------------------------------------*/
@@ -332,4 +333,17 @@ input[type="checkbox"]:after {
 
 input[type="checkbox"]:checked:after {
     left: calc(100% - 1.5em);
+}
+
+/*-------------------------------------------Footer------------------------------------------------------------------------*/
+
+footer {
+    font-family: merriweather;
+    font-size: 10px;
+    margin-top: 20px;
+}
+
+.alert {
+    font-family: meryweather;
+    text-align: center;
 }

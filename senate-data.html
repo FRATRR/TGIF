@@ -8,11 +8,11 @@
 <header>
 
     <div class="TGIF_title">
-        <div class="panda">
-            <div class="title">
+        <div>
+            <div>
                 <h1>TGIF</h1>
             </div>
-            <div class="subtitle">
+            <div>
                 <h5>Transparent Government In Fact</h5>
             </div>
         </div>
@@ -119,7 +119,15 @@
 
         </table>
         <div v-show="loading" class="loader_position">
-            <img src="images/dog-loader.gif">
+            <div class="loader"></div>
+
+        </div>
+
+        <div v-show="selection_error" class="alert">
+            <div>
+                <h2>No member found</h2>
+                <h4>Please change your filters or search</h4>
+            </div>
         </div>
 
     </div>
